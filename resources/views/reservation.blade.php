@@ -33,7 +33,7 @@
                         @csrf
                         <div class="row">
                             <div class="col-lg-12">
-
+                                <h4>Table Reservation</h4>
                             </div>
                             <div class="col-lg-6 col-sm-12">
                                 <fieldset>
