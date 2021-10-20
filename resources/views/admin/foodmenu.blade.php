@@ -10,6 +10,8 @@
 <head>
     <!-- Required meta tags -->
     @include('admin.admincss')
+
+
 </head>
 
 <body>
@@ -23,7 +25,7 @@
             <!-- partial:partials/_navbar.html -->
             <nav class="navbar p-0 fixed-top d-flex flex-row">
                 <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-                    <a class="navbar-brand brand-logo-mini" href="{{ url('/') }}"><img src="assets/images/logo-mini.svg"
+                    <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg"
                             alt="logo" /></a>
                 </div>
                 <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
@@ -94,29 +96,97 @@
                     </button>
                 </div>
             </nav>
+
+
+
+
+
+
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
-                    <div class="col-md-12 grid-margin stretch-card">
+
+                    {{-- Main Content --}}
+                    <div class="col-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <div class="row">
-                                    <div class="col-9">
-                                        <div class="d-flex align-items-center align-self-start">
-                                            <h3 class="mb-0">$12.34</h3>
-                                            <p class="text-success ml-2 mb-0 font-weight-medium">+3.5%</p>
+                                <h4 class="card-title">Basic form elements</h4>
+
+                                <form class="" method="POST" action="{{ url('/uploadfood') }}" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label for="title">Title</label>
+                                        <input style="color:black" type="text" name="title" class="form-control" id="exampleInputName1"
+                                            placeholder="Title">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="price">Price</label>
+                                        <input type="number" style="color:black" name="price" class="form-control" id="exampleInputEmail3"
+                                            placeholder="Price">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>File upload</label>
+                                        <div class="custom-file">
+                                            <input type="file" name="image" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
                                         </div>
                                     </div>
-                                    <div class="col-3">
-                                        <div class="icon icon-box-success ">
-                                            <span class="mdi mdi-arrow-top-right icon-item"></span>
-                                        </div>
+                                    <div class="form-group">
+                                        <label for="description">Description</label>
+                                        <textarea class="form-control" name="description" id="exampleTextarea1" rows="4" placeholder="Description"></textarea>
                                     </div>
-                                </div>
-                                <h6 class="text-muted font-weight-normal">Potential growth</h6>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
                             </div>
                         </div>
                     </div>
+
+
+
+
+                    <div class="col-md-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                              <h4 class="card-title"></h4>
+
+                              </p>
+                              <div class="table-responsive">
+                                <table class="table table-hover">
+                                  <thead>
+                                    <tr>
+                                      <th>#</th>
+                                      <th>Food name</th>
+                                      <th>Price</th>
+                                      <th>Description</th>
+                                      <th>Image</th>
+                                      <th>Action</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    @foreach ($data as $key => $item)
+                                        <tr>
+                                            <td>{{ ++$key }}</td>
+                                            <td>{{ $item->title }}</td>
+                                            <td>{{ $item->price }}</td>
+                                            <td>{{ $item->description }}</td>
+                                            <td><img style="width:70px;height:70px;border-radius:0px" src="/foodimage/{{ $item->image }}" alt=""></td>
+                                            <td>
+                                                <a href="{{ url('/updateview', $item->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                                <a href="{{ url('/deletemenu', $item->id) }}" class="btn btn-danger btn-sm">Delete</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+
+
+                    {{-- .Main content --}}
+
+
                 </div>
                 <!-- content-wrapper ends -->
                 <!-- partial:partials/_footer.html -->
@@ -142,6 +212,14 @@
     <!-- plugins:js -->
     @include('admin.adminjs')
     <!-- End custom js for this page -->
+
+    <script src="{{ asset('admin/assets/js/bs-custom-file-input.min.js') }}"></script>
+
+    <script>
+        $(document).ready(function () {
+            bsCustomFileInput.init()
+        })
+    </script>
 </body>
 
 </html>
