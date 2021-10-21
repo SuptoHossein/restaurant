@@ -38,4 +38,6 @@ Route::get('/updateview/{id}', [AdminController::class, 'updateview']);
 Route::post('/update/{id}', [AdminController::class, 'update']);
 Route::get('/deletemenu/{id}', [AdminController::class, 'deletemenu']);
 
-
+// Reservation Routes
+Route::post('/reservation', [AdminController::class, 'reservation']);
+Route::get('/reservations', [AdminController::class, 'viewreservation']);
