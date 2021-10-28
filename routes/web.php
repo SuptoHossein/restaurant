@@ -25,19 +25,37 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 // project routes
 Route::get('/', [HomeController::class, 'index']);
 
-Route::get('/redirects', [HomeController::class, 'redirects']);
+// Group Routes
+Route::middleware(['auth'])->group(function () {
 
-// User Routes
-Route::get('/users', [AdminController::class, 'user']);
-Route::get('/deleteuser/{id}', [AdminController::class, 'deleteuser']);
+    // User Condition Routes
+    Route::get('/redirects', [HomeController::class, 'redirects']);
 
-// Food Menu Routes
-Route::get('/foodmenu', [AdminController::class, 'foodmenu']);
-Route::post('/uploadfood', [AdminController::class, 'upload']);
-Route::get('/updateview/{id}', [AdminController::class, 'updateview']);
-Route::post('/update/{id}', [AdminController::class, 'update']);
-Route::get('/deletemenu/{id}', [AdminController::class, 'deletemenu']);
+    // User Routes
+    Route::get('/users', [AdminController::class, 'user']);
+    Route::get('/deleteuser/{id}', [AdminController::class, 'deleteuser']);
 
-// Reservation Routes
-Route::post('/reservation', [AdminController::class, 'reservation']);
-Route::get('/reservations', [AdminController::class, 'viewreservation']);
+    // Food Menu Routes
+    Route::get('/foodmenu', [AdminController::class, 'foodmenu']);
+    Route::post('/uploadfood', [AdminController::class, 'upload']);
+    Route::get('/updateview/{id}', [AdminController::class, 'updateview']);
+    Route::post('/update/{id}', [AdminController::class, 'update']);
+    Route::get('/deletemenu/{id}', [AdminController::class, 'deletemenu']);
+
+    // Reservation Routes
+    Route::post('/reservation', [AdminController::class, 'reservation']);
+    Route::get('/reservations', [AdminController::class, 'viewreservation']);
+
+    // Chefs Routes
+    Route::get('/chefs', [AdminController::class, 'chefs']);
+    Route::post('/chefstore', [AdminController::class, 'chefstore']);
+    Route::get('/chefEdit/{id}', [AdminController::class, 'chefEdit']);
+    Route::post('/chefUpdate/{id}', [AdminController::class, 'chefUpdate']);
+
+    // Cart Routes
+    Route::post('/addcart/{id}', [HomeController::class, 'addcart']);
+    Route::get('/showcart/{id}', [HomeController::class, 'showcart']);
+    Route::get('/remove/{id}', [HomeController::class, 'remove']);
+    Route::post('/orderconfirm', [HomeController::class, 'orderconfirm']);
+
+});

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Food;
 use App\Models\Reservation;
+use App\Models\Chef;
 
 class AdminController extends Controller
 {
@@ -109,6 +110,52 @@ class AdminController extends Controller
     }
 
 
+    public function chefs()
+    {
+        $data = Chef::all();
+        return view('admin.chefs', compact('data'));
+    }
 
+    public function chefstore(Request $request)
+    {
+        $data = new Chef();
 
+        $image = $request->image;
+        $imageName = time(). '.' .$image->getClientOriginalExtension();
+        $request->image->move('chefImage', $imageName);
+        $data->image = $imageName;
+        $data->name = $request->name;
+        $data->designation = $request->designation;
+        $data->facebook = $request->facebook;
+        $data->twitter = $request->twitter;
+        $data->instagram = $request->instagram;
+        $data->save();
+
+        return redirect()->back();
+    }
+
+    public function chefEdit($id)
+    {
+        $data = Chef::find($id);
+        return view('admin.chefEdit', compact('data'));
+    }
+
+    public function chefUpdate(Request $request, $id)
+    {
+        $data = Chef::find($id);
+
+        $image = $request->image;
+        $imageName = time(). '.' .$image->getClientOriginalExtension();
+        $request->image->move('chefImage', $imageName);
+        $data->image = $imageName;
+        $data->name = $request->name;
+        $data->designation = $request->designation;
+        $data->facebook = $request->facebook;
+        $data->twitter = $request->twitter;
+        $data->instagram = $request->instagram;
+        $data->save();
+
+        return redirect()->back();
+
+    }
 }
