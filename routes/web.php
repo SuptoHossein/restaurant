@@ -58,4 +58,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/remove/{id}', [HomeController::class, 'remove']);
     Route::post('/orderconfirm', [HomeController::class, 'orderconfirm']);
 
+    // Orders Routes
+    Route::get('/orders', [AdminController::class, 'orders']);
+
+    // Search Route
+    Route::get('/search', [AdminController::class, 'search']);
+
 });

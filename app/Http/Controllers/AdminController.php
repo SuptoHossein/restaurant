@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Food;
 use App\Models\Reservation;
 use App\Models\Chef;
+use App\Models\Order;
 
 class AdminController extends Controller
 {
@@ -157,5 +158,21 @@ class AdminController extends Controller
 
         return redirect()->back();
 
+    }
+
+
+    public function orders()
+    {
+        $data = Order::all();
+        return view('admin.orders', compact('data'));
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->search;
+        $data = Order::where('name', 'like', '%'.$search.'%')->get();
+        // dd($data);
+
+        return view('amdin.orders', compact('data'));
     }
 }

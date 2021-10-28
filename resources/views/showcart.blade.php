@@ -140,7 +140,7 @@ https://templatemo.com/tm-558-klassy-cafe
                         <th>Action</th>
                     </tr>
 
-            <form action="{{ url('/orderconfirm') }}" method="post">
+                    <form action="{{ url('/orderconfirm') }}" method="post">
                         @csrf
 
                         @foreach ($data as $item)
@@ -167,51 +167,49 @@ https://templatemo.com/tm-558-klassy-cafe
 
 
 
-                        <div class="row mt-3">
-                            <div class="col-lg-8 offset-lg-2">
-                                <div class="text-center">
-                                    <fieldset>
-                                        <button type="button" id="order" style="background-color: #fb5849;border-color:#fb5849"
-                                            class="btn btn-primary">Order Now</button>
-                                    </fieldset>
+                <div class="row mt-3">
+                    <div class="col-lg-8 offset-lg-2">
+                        <div class="text-center">
+                            <fieldset>
+                                <button type="button" id="order" style="background-color: #fb5849;border-color:#fb5849"
+                                    class="btn btn-primary">Order Now</button>
+                            </fieldset>
+                        </div>
+
+                        <div id="appear" class="mt-5" style="display: none">
+                            <div class="row">
+                                <div class="col-lg-12 text-center lead">
+                                    <h4>Personal Information</h4>
                                 </div>
 
-
-
-                                <div id="appear" class="mt-5" style="display: none">
-                                    <div class="row">
-                                        <div class="col-lg-12 text-center lead">
-                                            <h4>Personal Information</h4>
-                                        </div>
-
-                                        <div class="col-lg-6 offset-lg-3">
-                                            <div class="form-group">
-                                                <label for="name">Name</label>
-                                                <input type="text" name="name" style="border-radius:3px" class="form-control"
-                                                    placeholder="Enter Name">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="phone">Phone</label>
-                                                <input type="number" style="border-radius:3px" name="phone" class="form-control"
-                                                    placeholder="Number">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="address">Address</label>
-                                                <textarea style="border-radius:3px" class="form-control" name="address"
-                                                    cols="26" rows="3" placeholder="Address"></textarea>
-                                            </div>
-                                            <div class="text-right">
-                                                <button type="submit" class="btn btn-success">Confirm Order</button>
-                                                <button type="button" id="close" class="btn btn-danger">Close</button>
-                                            </div>
-                                        </div>
+                                <div class="col-lg-6 offset-lg-3">
+                                    <div class="form-group">
+                                        <label for="name">Name</label>
+                                        <input type="text" name="name" style="border-radius:3px" class="form-control"
+                                            placeholder="Enter Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone">Phone</label>
+                                        <input type="number" style="border-radius:3px" name="phone" class="form-control"
+                                            placeholder="Number">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="address">Address</label>
+                                        <textarea style="border-radius:3px" class="form-control" name="address"
+                                            cols="26" rows="3" placeholder="Address"></textarea>
+                                    </div>
+                                    <div class="text-right">
+                                        <button type="submit" class="btn btn-success">Confirm Order</button>
+                                        <button type="button" id="close" class="btn btn-danger">Close</button>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
 
-                    </form>
+                    </div>
+                </div>
+
+                </form>
             </div>
         </div>
 
